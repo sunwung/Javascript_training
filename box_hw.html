@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0">
+<title>Box HW</title>
+<style>
+.box{
+    width:100px;height: 100px;background-color: aquamarine;
+    position: absolute;left: 100px;top: 100px;
+}
+</style>
+</head>
+<body>
+   
+   <div class="box" id="box">Box</div>
+    <script>
+        let box=document.getElementById("box");
+        let pickup=function(){
+              
+            document.addEventListener("mousemove",move);
+            box.removeEventListener("click",pickup)
+            box.addEventListener("click",putdown)
+            
+            
+        };
+        let move=function(e){
+            console.log(e.clientX,e.clientY);
+            box.style.left=e.clientX-30+"px";
+            box.style.top=e.clientY-30+"px";
+
+        };
+        let putdown=function(){
+            document.removeEventListener("mousemove",move);
+            box.removeEventListener("mouseup",putdown);
+            box.addEventListener("mousedown",pickup);
+
+        }
+        box.addEventListener("click",pickup);
+      
+        
+    </script>
+</body>
+</html>
